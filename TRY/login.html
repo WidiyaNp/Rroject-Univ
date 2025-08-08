@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beranda</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            background-color: #f0f2f5;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #0c6a2d;
+            color: white;
+            padding: 20px;
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            box-sizing: border-box;
+        }
+        .sidebar-menu {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar-menu li {
+            padding: 15px 0;
+            border-bottom: 1px solid #1a7a40;
+        }
+        .sidebar-menu a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        .main-container {
+            margin-left: 250px;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        .header-logo {
+            height: 50px;
+            width: auto;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+            flex-grow: 1;
+            justify-content: flex-end;
+        }
+        .nav-menu li {
+            margin: 0 15px;
+        }
+        .nav-menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+        .content {
+            flex-grow: 1;
+            background-image: url('Background Univ.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+        .icon {
+            margin-right: 10px;
+        }
+        /* Media Queries untuk responsif */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+            .main-container {
+                margin-left: 0;
+            }
+            .header {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .nav-menu {
+                flex-direction: column;
+                text-align: center;
+                width: 100%;
+            }
+            .nav-menu li {
+                margin: 10px 0;
+            }
+        }
+
+        /* New CSS for the Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex; /* Use flexbox to center the content */
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            width: 90%;
+            max-width: 400px;
+            position: relative;
+        }
+        .close-button {
+            color: #aaa;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .login-form-container h2 {
+            margin-top: 0;
+            font-size: 24px;
+        }
+        .login-form-container p {
+            color: #555;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .login-button {
+            width: 100%;
+            background-color: #0c6a2d;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .login-button:hover {
+            background-color: #0a5b25;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <aside class="sidebar">
+        <ul class="sidebar-menu">
+            <li><a href="#" id="login-link"><i class="fas fa-sign-in-alt icon"></i> Log in</a></li>
+            <li><a href="#" id="layanan-link"><i class="fas fa-bell icon"></i> Layanan</a></li>
+            <li><a href="#" id="orang-link"><i class="fas fa-users icon"></i> Orang</a></li>
+            <li><a href="#" id="arsip-link"><i class="fas fa-archive icon"></i> Arsip</a></li>
+            <li><a href="#" id="kerjasama-link"><i class="fas fa-handshake icon"></i> Kerja Sama</a></li>
+            <li><a href="#" id="upt-link"><i class="fas fa-university icon"></i> UPT</a></li>
+            <li><a href="#" id="hotline-link"><i class="fas fa-phone-alt icon"></i> Hotline PMR</a></li>
+        </ul>
+    </aside>
+
+    <div class="main-container">
+        <header class="header">
+            <a href="#" class="header-logo-container" id="beranda-logo">
+            </a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#" id="profil-link">Profil</a></li>
+                    <li><a href="#" id="fakultas-link">Fakultas</a></li>
+                    <li><a href="#" id="direktori-link">Direktori</a></li>
+                         <img src="logo_unizar-.png" alt="Logo Beranda" class="header-logo">
+                    <li><a href="#" id="pendidikan-link">Pendidikan</a></li>
+                    <li><a href="#" id="penelitian-link">Penelitian</a></li>
+                    <li><a href="#" id="pengabdian-link">Pengabdian</a></li>
+                </ul>
+            </nav>
+            <div>
+                <a href="#" id="search-link"><i class="fas fa-search"></i></a>
+            </div>
+        </header>
+
+        <main class="content">
+            </main>
+    </div>
+
+    <div id="loginModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <div class="login-form-container">
+                <h2>Login</h2>
+                <p>Masukkan email dan password Anda untuk masuk ke akun Anda</p>
+                <form>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="unizar@inc">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password">
+                    </div>
+                    <button type="submit" class="login-button">Login</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get the modal and the buttons
+            const loginModal = document.getElementById('loginModal');
+            const loginLink = document.getElementById('login-link');
+            const closeButton = document.querySelector('.close-button');
+
+            // Function to show the modal
+            function showModal() {
+                loginModal.style.display = 'flex';
+            }
+
+            // Function to hide the modal
+            function hideModal() {
+                loginModal.style.display = 'none';
+            }
+
+            // --- Menambahkan event listener untuk semua tautan ---
+            const allLinks = document.querySelectorAll('a');
+            allLinks.forEach(link => {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    const clickedId = event.currentTarget.id;
+                    console.log(`Link dengan ID: "${clickedId}" telah diklik.`);
+                    
+                    // Show the modal if the login link was clicked
+                    if (clickedId === 'login-link') {
+                        showModal();
+                    }
+                });
+            });
+
+            // Event listener for closing the modal with the 'x' button
+            closeButton.addEventListener('click', hideModal);
+
+            // Event listener to close the modal if the user clicks outside of it
+            window.addEventListener('click', function(event) {
+                if (event.target === loginModal) {
+                    hideModal();
+                }
+            });
+
+        });
+    </script>
+</body>
+</html>
